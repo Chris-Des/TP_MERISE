@@ -1,0 +1,67 @@
+{% extends 'bade.html.twig' %}
+
+{% block body %}
+<h3 class="mt-5 mb-4">Page Comment</h3>
+    <a href="/public/comment/create">
+    <button class="btn btn-secondary mb-4">Créer un commentaire</button>
+    </a>
+{% if comments %}
+ <table class="table table-dark" align="center">
+  <tr>
+    <th>#</th>
+    <th>title</th>
+    <th>contenu</th>
+    <th>modifier</th>
+  </tr>
+  {% for comment in comments %}
+  <tr>
+    <td>
+    {{ comment.id }}
+    </td>
+    <td>  
+      {{ comment.title }}
+    </td>
+    <td>  
+      {{ comment.description }}
+    </td>
+    <td>  
+      <a href="/public/comment/modify/{{ comment.id }}">
+      <i class="fa-solid fa-link"></i>
+      </a>
+    </td>
+<td>
+<!-- Button trigger modal -->
+<span data-bs-toggle="modal" data-bs-target="#exampleModal{{ comment.id }}">
+  <i class="fa-solid fa-trash text-danger"></i>
+</span>
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal{{ comment.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="color:black">
+        <p>Ëtes - vous certain de vouloir faire cela ? </p>
+        <p>Le commentaire sera supprimer !</p>
+        <small class="text-danger">Cette action sera irreversible !</small>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Annuler</button>
+   <a href="/public/commennt/remove/{{ comment.id }}">
+   <button type="button" class="btn btn-danger">Supprimer</button>
+   </a>
+      </div>
+    </div>
+  </div>
+</div>
+</td>
+  </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p class="h3 text-danger mt-3">Il n'existe aucune(s) categorie(s)</p>
+{% endif %}
+{% endblock %}
+

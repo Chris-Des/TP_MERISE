@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% block styles %}
+	<link rel="stylesheet" href="../dist/assets/css/style.css">
+	<link rel="stylesheet" href="../../dist/assets/css/style.css">
+{% endblock %}
+{% block body %}
+	<hr/>
+	{% if categorie %}
+		<h3 class="mb-3">Modifier un commentaire</h3>
+		<div class="card text-center">
+			<div class="card-body">
+				<form method="post">
+					<div class="form-group">
+						<label for="content">Contenu :</label>
+					</div>
+					<div class="form-group">
+						<label for="content">Etat :</label>
+						<select id="etat" name="etat">
+							<option value="true">Valider</option>
+							<option value="false">Non Valider</option>
+						</select>
+					</div>
+					<hr/>
+					<div class="text-center mt-3">
+						<button type="submit" class="btn btn-outline-success" name="btnUpdate">Modifier</button>
+						<a href="/public/category" class="btn btn-outline-warning">Annuler</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	{% else %}
+		<h3 class="mb-3">Votre commentaire :</h3>
+		<div class="card text-center">
+			<div class="card-body">
+				<form method="post">
+					<div class="form-group">
+						<label for="content">Contenu :</label>
+						<textarea name="description" class="form-control"></textarea>
+					</div>
+					<hr/>
+					<div class="text-center mt-3">
+						<button type="submit" class="btn btn-outline-success" name="btnCreate">Créer</button>
+						<a href="/public/category" class="btn btn-outline-warning">Annuler</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}
